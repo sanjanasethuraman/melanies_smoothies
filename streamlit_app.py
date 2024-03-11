@@ -2,6 +2,7 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
+import pandas
 
 # Write directly to the app
 st.title("My Parents New Healthy Diner")
@@ -21,6 +22,7 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+my_pd = my_dataframe.to_pandas()
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
 
